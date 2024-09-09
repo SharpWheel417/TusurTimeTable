@@ -26,6 +26,10 @@ def get_timetable() -> str:
     if lesson_name:
       lesson_name = lesson_name.next
 
+    info = i.find('span', class_='fa-info-circle')
+    if info:
+      info = info['title']
+
     teacher = i.find('span', class_='group')
     if teacher:
       teacher = teacher.text
@@ -53,6 +57,7 @@ def get_timetable() -> str:
 
       lesson ={
       'name': lesson_name,
+      'info': info,
       'time': time,
       'teacher': teacher,
       'place': place,
@@ -82,6 +87,7 @@ def get_timetable() -> str:
 Преподаватель: {i['teacher']}
 Время: {i['time']}
 Место: {i['place']}
+Доп инфо: {i['info']}
 
   '''
 
